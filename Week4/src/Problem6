@@ -1,0 +1,53 @@
+import java.util.*;
+
+public class Problem6 {
+    static int linearSearch(int[] arr, int target) {
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] == target) return i;
+        }
+        return -1;
+    }
+
+    static int floor(int[] arr, int target) {
+        int low = 0, high = arr.length - 1, res = -1;
+        while (low <= high) {
+            int mid = (low + high) / 2;
+            if (arr[mid] <= target) {
+                res = arr[mid];
+                low = mid + 1;
+            } else high = mid - 1;
+        }
+        return res;
+    }
+
+    static int ceiling(int[] arr, int target) {
+        int low = 0, high = arr.length - 1, res = -1;
+        while (low <= high) {
+            int mid = (low + high) / 2;
+            if (arr[mid] >= target) {
+                res = arr[mid];
+                high = mid - 1;
+            } else low = mid + 1;
+        }
+        return res;
+    }
+
+    static int insertionPoint(int[] arr, int target) {
+        int low = 0, high = arr.length;
+        while (low < high) {
+            int mid = (low + high) / 2;
+            if (arr[mid] < target) low = mid + 1;
+            else high = mid;
+        }
+        return low;
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {10, 25, 50, 100};
+
+        int lin = linearSearch(arr, 30);
+        int f = floor(arr, 30);
+        int c = ceiling(arr, 30);
+        int pos = insertionPoint(arr, 30);
+    }
+}
